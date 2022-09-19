@@ -14,4 +14,22 @@ import (
 func WordIndexAll(s string) map[string][]int {
 	// TODO: implement me
 	// HINT: You may find the `strings.Index` and `strings.ToLower` functions helpful
+	// TODO: implement me
+	words := strings.Fields(s)
+	indexMap := make(map[string][]int)
+	for _, word := range words{
+		word = strings.ToLower(word)
+		for indexMainStr, _ := range s{
+			isBeginningOfTheWord := matchesInWordAtIndex(s, word, indexMainStr)
+			if isBeginningOfTheWord{
+				arrayOfBeginningIndices := indexMap[word]
+				if arrayOfBeginningIndices == nil{
+					arrayOfBeginningIndices = make([]int, 5)
+				}
+				arrayOfBeginningIndices = append(arrayOfBeginningIndices, indexMainStr)
+				indexMap[word]=arrayOfBeginningIndices
+			}
+		}
+	}
+	return indexMap
 }

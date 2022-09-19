@@ -12,5 +12,12 @@ import (
 // same word.
 func WordCount(s string) map[string]int {
 	// TODO: implement me
+	wordsSlice := strings.Fields(s)
+	wordMap := make(map[string]int)
+	for _, word := range wordsSlice{
+		word = strings.ToLower(word)
+		wordMap[word]++
+	}
+	return wordMap
 	// HINT: You may find the `strings.Fields` and `strings.ToLower` functions helpful
 }

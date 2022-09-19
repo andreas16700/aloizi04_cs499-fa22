@@ -6,9 +6,32 @@
 	],
 	"settings": {
 		"markdown.marp.themes": [
-			"./style/jobs.css"
-			"./style/schema.css"
+			"./style/jobs.css",
+			"./style/schema.css",
 			"./style/structure.css"		
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+		{
+			"name": "Launch test function",
+			"type": "go",
+			"request": "launch",
+			"mode": "test",
+			"program": "${workspaceFolder}/assignments/hw1/",
+			"args": [
+				"-test.run",
+				"MyTestFunction"
+			]
+		},
+		{
+			"name": "Opened File",
+			"type": "go",
+			"request": "launch",
+			"mode": "auto",
+			"program": "main.go"
+		}
 		]
 	}
 }
