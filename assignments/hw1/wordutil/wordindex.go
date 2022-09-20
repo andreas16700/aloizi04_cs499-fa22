@@ -22,9 +22,9 @@ func WordIndex(s string) map[string]int {
 	}
 	for _, word := range words {
 		word = strings.ToLower(word)
-		for indexMainStr, _ := range s {
-			isBeginningOfTheWord := matchesInWordAtIndex(s, word, indexMainStr)
-			if isBeginningOfTheWord && indexMap[word] != BLANK {
+		for indexMainStr := range s {
+			isBeginningOfTheWord := MatchesInWordAtIndex(s, word, indexMainStr, false)
+			if isBeginningOfTheWord && indexMap[word] == BLANK {
 				indexMap[word] = indexMainStr
 			}
 		}
@@ -33,7 +33,10 @@ func WordIndex(s string) map[string]int {
 	return indexMap
 	// HINT: You may find the `strings.Index` and `strings.ToLower` functions helpful
 }
-func matchesInWordAtIndex(str, substring string, index int) bool {
+func MatchesInWordAtIndex(str, substring string, index int, caseSensitive bool) bool {
 	upUntilIndex := str[index:]
+	if !caseSensitive {
+		upUntilIndex = strings.ToLower(upUntilIndex)
+	}
 	return strings.HasPrefix(upUntilIndex, substring)
 }

@@ -12,24 +12,38 @@ import (
 // Matching is case insensitive, e.g. "Orange" and "orange" is considered the
 // same word.
 func WordIndexAll(s string) map[string][]int {
-	// TODO: implement me
-	// HINT: You may find the `strings.Index` and `strings.ToLower` functions helpful
-	// TODO: implement me
-	words := strings.Fields(s)
+	words := uniqueWords(s, true)
 	indexMap := make(map[string][]int)
-	for _, word := range words{
+	for _, word := range words {
 		word = strings.ToLower(word)
-		for indexMainStr, _ := range s{
-			isBeginningOfTheWord := matchesInWordAtIndex(s, word, indexMainStr)
-			if isBeginningOfTheWord{
+		for indexMainStr := range s {
+			isBeginningOfTheWord := MatchesInWordAtIndex(s, word, indexMainStr, false)
+			if isBeginningOfTheWord {
 				arrayOfBeginningIndices := indexMap[word]
-				if arrayOfBeginningIndices == nil{
-					arrayOfBeginningIndices = make([]int, 5)
+				if arrayOfBeginningIndices == nil {
+					arrayOfBeginningIndices = make([]int, 0)
 				}
 				arrayOfBeginningIndices = append(arrayOfBeginningIndices, indexMainStr)
-				indexMap[word]=arrayOfBeginningIndices
+				indexMap[word] = arrayOfBeginningIndices
 			}
 		}
 	}
 	return indexMap
+}
+func uniqueWords(s string, convertToLowercase bool) []string {
+	words := strings.Fields(s)
+	wordMap := make(map[string]bool)
+	for _, word := range words {
+		if convertToLowercase {
+			word = strings.ToLower(word)
+		}
+		wordMap[word] = true
+	}
+	keys := make([]string, len(wordMap))
+	i := 0
+	for k := range wordMap {
+		keys[i] = k
+		i++
+	}
+	return keys
 }

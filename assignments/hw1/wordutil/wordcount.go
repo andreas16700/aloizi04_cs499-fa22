@@ -11,10 +11,9 @@ import (
 // Matching is case insensitive, e.g. "Orange" and "orange" is considered the
 // same word.
 func WordCount(s string) map[string]int {
-	// TODO: implement me
 	wordsSlice := strings.Fields(s)
 	wordMap := make(map[string]int)
-	for _, word := range wordsSlice{
+	for _, word := range wordsSlice {
 		word = strings.ToLower(word)
 		wordMap[word]++
 	}
